@@ -16,10 +16,11 @@ const TodoList = () => {
             }}>
             <TodoAddForm
             />
-            {todos.map((todo) =>
+            {todos.map((todo, index) =>
                 <TodoItem
                     key={todo.id}
                     todo={todo}
+                    index={index+1}
                 />)}
         </div>
     )

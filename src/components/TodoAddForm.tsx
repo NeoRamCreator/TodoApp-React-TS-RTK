@@ -5,9 +5,19 @@ import { addTodo, editTodo } from "../features/todo/todoSlice";
 import { StoreState } from "../store/store";
 import { edit } from "../features/todo/inputSlice";
 
+import styled from 'styled-components';
+
+
 interface TodoAddFormProps {
 }
-
+const StyleInput = styled.input`
+    font-size: 30px;
+    margin-right: 15px;
+    border-radius: 8px;
+    border: 2px solid #7a7a7a;
+    min-width: 80%;
+    width: 10px
+    `
 
 const TodoAddForm: React.FC<TodoAddFormProps> = ({ }) => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -55,27 +65,32 @@ const TodoAddForm: React.FC<TodoAddFormProps> = ({ }) => {
         dispatch(edit({ text: '', id: '' }))
     }
 
+    
+
 
     return (
+        <div
+            style={{
+                width: '90%'
+            }}>
 
-        <div>
             <form action="" onSubmit={handleSubmit}
                 style={{
                     display: "flex",
                     alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%'
                 }}>
-                <input
+                <StyleInput
+                //  <input 
                     ref={inputRef}
                     type="text"
                     value={inputValue}
                     onChange={handleChangeInput}
-                    style={{
-                        fontSize: "30px",
-                        marginRight: 15,
-                        borderRadius: '8px',
-                        border: '2px solid #7a7a7a'
-                    }}
-                />
+
+                // />
+                >
+                </StyleInput>
                 <button
                     type="submit"
                     style={{

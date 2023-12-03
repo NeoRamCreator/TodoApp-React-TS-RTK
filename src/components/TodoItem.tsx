@@ -4,11 +4,15 @@ import { TodoInterface } from "../features/todo/todoType";
 import { deleteTodo } from "../features/todo/todoSlice";
 import { edit } from "../features/todo/inputSlice";
 
+import styled from 'styled-components';
+import '../css.css'
+
 interface TodoItemProps {
     todo: TodoInterface;
+    index: number
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ todo, }) => {
+const TodoItem: React.FC<TodoItemProps> = ({ todo,index }) => {
     const dispatch = useDispatch()
 
     const deleteTodoItem = () => {
@@ -20,30 +24,41 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, }) => {
         console.log("editedTodoitem: ", todo.text, todo.id)
     }
 
+
     return (
-        <div style={{ display: 'flex', alignItems: "center", width: '100%', justifyContent: 'space-between', }}>
-            <h2>{todo.text}</h2>
-            <div>
+        <StyledItem >
+            <h2 className="todo_text">{index}. {todo.text}</h2>
+            <div className="btns">
 
-                <button style={{
-                    padding: "5px 10px",
-                    margin: "10px 0",
-                    marginRight: 5,
-
-                }}
-                    onClick={deleteTodoItem}
-                >
+                <button
+                    className="del"
+                    onClick={deleteTodoItem}>
                     удалить
                 </button>
 
                 <button
                     onClick={editedTodoitem}
-                    style={{ padding: "5px 10px", margin: "10px 0" }}>
+                    >
                     Редактировать
                 </button>
             </div>
-        </div>
+        </StyledItem>
     )
 }
+
+const StyledItem = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: lightgray;
+      cursor: pointer;
+    }
+  `;
+
 
 export default TodoItem
